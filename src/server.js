@@ -91,6 +91,11 @@ app.get("/collections/:id", async function (req, res) {
 	
 })
 
+app.delete('/orders/',async function(req, res){
+	const items = await orderModel.remove({})
+	const items1 = await cartModel.remove({})
+	 res.send({ items,items1});
+})
 
 app.delete('/cart/:id;', async function(req, res){
     const food = await cartModel.findByIdAndDelete(req.params.id);

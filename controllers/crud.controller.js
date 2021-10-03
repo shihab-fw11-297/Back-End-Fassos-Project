@@ -18,6 +18,12 @@ const Delete = (modal) => async(req, res) => {
     const items = await modal.findByIdAndRemove(req.params.id)
     return res.status(200).send({ items });
 }
+const DeleteAll = (modal) => async(req, res) => {
+
+    const items = await modal.DeleteAll();
+    return res.status(200).send({ items });
+}
+
 
 const findOne = (modal) => async(req, res) => {
     const items = await modal.findById(req.params.id).lean().exec()
@@ -35,5 +41,6 @@ module.exports = {
     Delete,
     findOne,
     patch,
-    FoodItemSearch
+    FoodItemSearch,
+    DeleteAll
 }

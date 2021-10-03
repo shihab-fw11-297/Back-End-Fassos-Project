@@ -16,5 +16,6 @@ router.patch("/:id", crudController.patch(ordermodel));
 
 router.delete("/:id", crudController.Delete(ordermodel));
 
+router.delete("/delete",crudController.DeleteAll(ordermodel))
 
 module.exports = router;

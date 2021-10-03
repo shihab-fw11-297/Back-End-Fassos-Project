@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,34 +8,36 @@
     <title>Order</title>
     <link rel="shortcut icon"
     href="https://assets.faasos.io/order.faasos.io/production/app/public/images/faviconFaasos.png" />
+
     <link rel="stylesheet" href="css/bar.css">
     <link rel="stylesheet" href="css/userSection.css">
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/order.css">
-    
 </head>
 
 <body>
     <!-------------------Top Bar---------------------->
     <%- include ("partials/navbar.partials.ejs") %>
-    <!-------------------login section details---------------------->
-    <%- include ("partials/loginSection.partials.ejs") %>
-    <!-------------------Link section details bar---------------------->
-    <%- include ("partials/link.partials.ejs") %>
-     <!-------------------Order Section---------------------->
-     <div id="showBar">
-        <div id="profilebox">
-          <h3 id="Mprofile">Live Orders</h3>
-          <div id="orderdata">
-    
-          </div>
-    
-          <div id="sucsess">
-    
-          </div>
-        </div>
+        <!-------------------login section details---------------------->
+        <%- include ("partials/loginSection.partials.ejs") %>
+            <!-------------------Link section details bar---------------------->
+            <%- include ("partials/link.partials.ejs") %>
+            
+  <!-------------------Manage Profile---------------------->
+  <div id="showBar">
+    <div id="profilebox">
+      <h3 id="Mprofile">Live Orders</h3>
+      <div id="order-data"></div>
+
+      <div id="sucsess">
+
       </div>
-     <!-------------------Footer Area---------------------->
-    <%- include ("partials/footer.partials.ejs") %>
+    </div>
+  </div>
+              
+                <!-------------------Footer Area---------------------->
+                <%- include ("partials/footer.partials.ejs") %>
 </body>
+<script src="../public/scripts/order.script.js"></script>
+
 </html>
