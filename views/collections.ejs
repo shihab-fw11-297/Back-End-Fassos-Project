@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://assets.faasos.io/order.faasos.io/production/app/public/images/faviconFaasos.png" />
+    <link rel="shortcut icon"
+        href="https://assets.faasos.io/order.faasos.io/production/app/public/images/faviconFaasos.png" />
     <link itemprop="url" rel="stylesheet" href="/css/bar.css">
     <link itemprop="url" rel="stylesheet" href="/css/collection.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -31,10 +32,9 @@
             <!-- search bar and radio button-->
             <div id="main-container" class="container">
                 <div id="mainContentHeading">
-                    <h1 class="heading">
-                        Order Food Online in <span id="headingLocation">Fort
-                        </span>
-                    </h1>
+                    <p class="heading">
+                        Order Food Online in Fort
+                    </p>
                     <div class="filterbutton">
                         <button id="triger">
                             <img src="../images/searchIcon.svg" alt="" />
@@ -44,12 +44,12 @@
 
                             <input type="radio" name="veg_nonVeg" value="nonVeg" id="nonVeg"
                                 data-food="<%= JSON.stringify(foods.veg_NonVeg)%>" />
-                            <label for="nonVeg" style="background-color: white;">Non-Veg Only</label>
+                            <label for="nonVeg" style="background-color: white;">Non-Veg</label>
 
                         </button>
                         <button>
                             <input type="radio" name="veg_nonVeg" value="veg" id="veg" onclick="handleVeg()" />
-                            <label for="veg" style="background-color: white;">Veg Only</label>
+                            <label for="veg" style="background-color: white;">Veg</label>
                         </button>
                     </div>
                 </div>
@@ -58,19 +58,26 @@
 
                 <div id="mainProducts">
 
-                    <div id="productCategory">
-                        <ul id="Combo-category">
+                    <div id="productCategory" class="modal-overlay" id="modal-overlay">
+                        <div class="modal" id="modal">
+                            <button class="close-button" id="close-button"></button>
+                            <div class="modal-guts">
+                                <ul id="Combo-category">
 
-                            <%category.forEach(function(p){%>
+                                    <%category.forEach(function(p){%>
 
-                                <li>
-                                    <a href="/collections/<%=p.id%>" id="Combo-categorys">
-                                        <%=p.category_name%>
-                                    </a>
-                                </li>
-                                <%});%>
-                        </ul>
+                                        <li>
+                                            <a href="/collections/<%=p.id%>" id="Combo-categorys">
+                                                <%=p.category_name%>
+                                            </a>
+                                        </li>
+                                        <%});%>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
+                    <button id="open-button" class="open-button">MENU</button>
                     <!-- middle products list-->
                     <div id="productArea">
                         <%foods.forEach(function(p){ %>
@@ -103,32 +110,46 @@
                             <%});%>
                     </div>
                     <!--check out page area-->
-                    <div id="checkout">
+                    <div id="checkout" class="modal-overlay2" id="modal-overlay2">
+                        <div class="modal2" id="modal2">
+                            <button class="close-button2" id="close-button2"></button>
+                            <div class="modal-guts2">
                         <% if(cart.length==0){%>
-                            <h2 style=" background-color: white;font-size: 20px;color: rgb(51, 51, 51); font-family: 'Mulish', sans-serif;">Empty Cart
+                            <h2
+                                style=" font-size: 20px;color: rgb(51, 51, 51); font-family: 'Mulish', sans-serif;">
+                                Empty Cart
                             </h2>
                             <div class="emptyCart">
-                                <img id="emptyCartImage" src="../images/emptyCart.svg" alt="empty cart" style="width:270px;margin:20px 2px 2px 20px" />
+                                <img id="emptyCartImage" src="../images/emptyCart.svg" alt="empty cart"
+                                    style="width:270px;margin:20px 2px 2px 20px" />
                                 <p style="width:270px;margin:auto;text-align:center;  color: rgb(153, 153, 153);
                                               font-weight: 500;">Empty Cart is a sign of an empty stomach.</p>
                             </div>
                             <%} else {%>
                                 <div id="cart_data_div">
-                                    <h2 style="font-size: 20px;color: rgb(51, 51, 51); font-family: 'Mulish', sans-serif; margin-bottom: 10px;"><p>Cart: <%=cart.length%> Item</p></h2>
-                                    
+                                    <h2
+                                        style="font-size: 20px;color: rgb(51, 51, 51); font-family: 'Mulish', sans-serif; margin-bottom: 10px;">
+                                        <p style="background-color: white;">Cart: <%=cart.length%> Item</p>
+                                    </h2>
+
                                 </div>
+                                <div id="cart_data_div">
                                 <h3 id="SubTotal">subtotal</h3>
-                                
+
                                 <p id="charges">Extra charges may apply</p>
-                            
+
                                 <p id="total"></p>
                                 <div id="clear"></div>
                                 <div id="submit"></div>
                                 <%}%>
+                            </div>
+                            </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
+            </div>
+            <button id="open-button2" class="open-button2">Cart: <%=cart.length%></button>
             <!---->
 
             <%- include ("partials/footer.partials.ejs") %>
@@ -138,4 +159,5 @@
 <script src="../public/scripts/cart.script.js"></script>
 <script src="/scripts/slider.js"></script>
 <script src="/scripts/search.js"></script>
+<script src="/public//scripts/popup.js"></script>
 <!-- <script type='module' src="/scripts/collection.js"></script> -->

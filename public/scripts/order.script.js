@@ -60,8 +60,8 @@ setTimeout(function () {
     removeItem()
     print()
     Refresh()
-    alert("ORDER HAS BEEN SUCSESSFULLY DELIVERD")
-  }, 10000);
+    alert("Your Order has been Sucsessfully Placed")
+  }, 20000);
 
   function Refresh() {
     window.parent.location = window.parent.location.href;
@@ -77,7 +77,7 @@ setTimeout(function () {
     divs.id = "done-Message"
 
     let dones = document.createElement('p');
-    dones.innerText = "your order has been Sucsessfully Deliverd"
+    dones.innerText = "Your Order has been Sucsessfully Placed"
     dones.id = "completed"
 
     let image = document.createElement('img');

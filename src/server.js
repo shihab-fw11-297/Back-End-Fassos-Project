@@ -8,6 +8,7 @@ const connect = require("../configs/db");
 const Signup = require("../models/signup.model");
 
 app.use(express.json());
+app.use(flash());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
@@ -104,7 +105,7 @@ app.delete('/cart/:id;', async function(req, res){
 
 app.get("/index", async(req, res) => {
     try {
-        res.render("index");
+        res.render("index",{message:req.flash('message')});
     } catch (err) {
         return res.status(400).json({ err: err.message });
     }
@@ -125,8 +126,8 @@ app.get("/profile",  async(req, res) => {
 	}
 })
 
-app.get("/collections", async(req, res) => {
-    try {
+app.get("/collections", async (req, res) => {
+	try {	
         res.render("collections");
     } catch (err) {
         return res.status(400).json({ err: err.message });
@@ -196,37 +197,51 @@ app.get("/shippingaddress", async(req, res) => {
 
 
 app.get("/signup", (req, res) => {
-	res.render("signup");
+	res.render("signup",{message:req.flash('message')});
 })
 
 app.post("/signup", async (req, res) => {
-	const registered = await Signup.create(req.body);
+	try {
+		const registered = await Signup.create(req.body);
+		setTimeout(() => {
+			req.flash('message', 'Singed up successfully !...')
+			res.redirect("index");
+		}, 1000)
+	} catch (err) {
 	setTimeout(() => {
-	res.redirect("index");	
-	},1000)
-
+			req.flash('message', 'Phone Number or Email already exist')
+			res.redirect("index");
+		}, 1000)	
+	}
 })
 
 
 app.get("/login",(req, res)=> {
-	return res.render("login");
+	return res.render("index",{message:req.flash('message')});
 })
 
 app.post("/login", async (req, res) => {
 	try {
 		const number = req.body.Phone;
 		const user = await Signup.findOne({ Phone: number });
-	
-
 		if (user) {
+			setTimeout(() => {
 			req.session.user = user
 			res.redirect("/collections");
+		}, 1000)
 		}
 		else {
-			res.redirect('/index');
+			setTimeout(() => {
+			req.flash('message','Invalid Crediantials')
+				res.redirect('/signup');
+		}, 1000)
+		
 		}
 	} catch (error) {
-		res.status(400).send("Not matched");
+			setTimeout(() => {
+			req.flash('message','Invalid Crediantials')
+			res.redirect('/signup');
+		}, 1000)
 	}
 })
 

@@ -9,17 +9,23 @@
     <title>Order Online from Faasos</title>
     <link rel="shortcut icon"
         href="https://assets.faasos.io/order.faasos.io/production/app/public/images/faviconFaasos.png" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 </head>
 
 <body>
     <div id="container">
-
+        <% if(message != ''){%>
+            <div id='message' class='alert alert-success'>
+                <%= message%>
+            </div>
+            <% } %>
+   
         <div id="fasos">
             <img src="https://assets.faasos.io/faasos_v2/faasosLogoBrand.svg" alt="faasos" height="72" width="80"
                 style="margin-top:40px">
             <div class=" myfirst">
-                <p style="color:#FFEB3B;font-size:20px;font-weight: 600;margin-top: 50px;" id="login">login</p>
+                <p  id="login">login</p>
 
 
                 <!-------------------LOGIN code---------------------->
@@ -135,7 +141,7 @@
             <p style="text-align: center;">Double Sealed<br /> Packaging</p>
         </div>
         <div class="it4"><button
-                style="width:140px;height:40px;width:90px;border-radius:5px;border:1px solid white;color:rgb(86, 64, 153);padding:10px;">Know
+                style="width:105px;height:40px;border-radius:5px;border:1px solid white;color:rgb(86, 64, 153);padding:10px;">Know
                 more</button></div>
 
     </div>
